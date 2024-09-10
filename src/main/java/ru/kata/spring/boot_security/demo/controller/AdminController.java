@@ -33,16 +33,9 @@ public class AdminController {
     @GetMapping("/{id}")
     public String showUser(@RequestParam("id") int id, Model model) {
         model.addAttribute("user", userService.showUser(id));
-        return "admin/showUser";
+        return "admin/admin";
     }
 
-    @GetMapping("/create")
-    public String newUser(Model model) {
-        model.addAttribute("user", new User());
-        model.addAttribute("userList", userService.getAllUsers());
-        model.addAttribute("roleList", userService.getAllRoles());
-        return "admin/create";
-    }
 
     @PostMapping()
     public String createUser(@ModelAttribute("user") User user,
@@ -56,15 +49,8 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/edit")
-    public String edit(@RequestParam("id") int id, Model model) {
-        model.addAttribute("user", userService.showUser(id));
-        model.addAttribute("roleList", userService.getAllRoles());
-        return "admin/edit";
-    }
-
-    @PostMapping("/edit")
-    public String updateUser(@RequestParam("id") int id,
+    @PostMapping("/{id}")
+    public String updateUser(@PathVariable("id") int id,
                              @ModelAttribute("user") User user,
                              @RequestParam(value = "editRoles") String[] roles) {
         Set<Role> roles1 = new HashSet<>();
@@ -76,8 +62,8 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PostMapping("/delete")
-    public String delete(@RequestParam("id") int id) {
+    @GetMapping("{id}/remove")
+    public String delete(@PathVariable("id") int id) {
         userService.delete(id);
         return "redirect:/admin";
     }
