@@ -8,7 +8,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
-<body>
+<body style="padding: 30px">
 <!--    Header  -->
 
     <nav class="navbar navbar-dark bg-dark">
@@ -17,7 +17,7 @@
                 <a th:text="${user.getEmail()}"></a>
             </strong>
             <span class="text-start">with roles:
-                <a th:each="role : ${user.getRoles()}" th:text="${role} + ' '"></a>
+                <a th:each="role : ${user.getRoles()}" th:text="${#strings.replace(role.name, 'ROLE_', '')} + ' '"></a>
             </span>
         </span>
         <ul class="navbar-nav px-4">
@@ -65,7 +65,7 @@
                             <td th:text="${u.getName()}"></td>
                             <td th:text="${u.getAge()}"></td>
                             <td th:text="${u.getEmail()}"></td>
-                            <td><span th:each="role : ${u.getRoles()}" th:text="${role} + ' '"></span></td>
+                            <td><span th:each="role : ${u.getRoles()}" th:text="${#strings.replace(role.name, 'ROLE_', '')} + ' '"></span></td>
                         </tr>
                         </tbody>
                     </table>
