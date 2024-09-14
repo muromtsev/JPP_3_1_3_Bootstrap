@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
@@ -33,7 +32,12 @@
         <div class="col-2 fixed-left">
             <div th:fragment="leftmenu">
                 <ul class="nav flex-sm-column">
-                    <li class="nav-item" sec:authorize="hasRole('USER')">
+                    <li class="nav-item" th:each="role : ${user.getRoles()}" th:if="${role.getName().equals('ROLE_ADMIN')}">
+                        <a class="nav-link"
+                           th:classappend="${#httpServletRequest.getRequestURI().equals('/admin') ? 'active bg-primary text-white' : ''}"
+                           href="#" th:href="@{/admin}" aria-current="page">Admin</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link"
                            th:classappend="${#httpServletRequest.getRequestURI().equals('/user') ? 'active bg-primary text-white' : ''}"
                            href="#" th:href="@{/user}">User</a>

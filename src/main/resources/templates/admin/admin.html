@@ -150,7 +150,7 @@
                                             <option th:each="role : ${roleList}"
                                                     th:value="${role.name}"
                                                     th:text="${#strings.replace(role.name, 'ROLE_', '')}"
-                                                    th:selected="${role.name == 'USER' ? 'selected' : ''}">
+                                                    th:selected="${role.name} == 'ROLE_USER'">
                                             </option>
                                         </select>
                                     </div>
@@ -222,7 +222,7 @@
                                             <option th:each="role : ${roleList}"
                                                     th:value="${role.name}"
                                                     th:text="${#strings.replace(role.name, 'ROLE_', '')}"
-                                                    th:selected="${role.name == 'USER' ? 'selected' : ''}">
+                                                    th:selected="${role.name} == 'ROLE_USER'">
                                             </option>
                                         </select>
                                     </label>
