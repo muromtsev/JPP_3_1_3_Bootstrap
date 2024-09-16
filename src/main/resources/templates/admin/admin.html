@@ -222,7 +222,7 @@
                                             <option th:each="role : ${roleList}"
                                                     th:value="${role.name}"
                                                     th:text="${#strings.replace(role.name, 'ROLE_', '')}"
-                                                    th:selected="${role.name} == 'ROLE_USER'">
+                                                    th:selected="${#sets.contains(editUser.roles, role)}">
                                             </option>
                                         </select>
                                     </label>
